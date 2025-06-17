@@ -1,4 +1,4 @@
-# TCU Ampliación - Módulo Personalizado para Odoo
+# TCU Ampliación - Módulo de Control de Estudiantes TCU
 Este módulo desarrollado en Odoo permite gestionar el control académico de estudiantes que realizan Trabajo Comunal Universitario (TCU). Fue diseñado para cubrir flujos administrativos entre estudiantes y profesores, con trazabilidad de estados y reportería en PDF.
 
 ## 🎯 Funcionalidades principales
