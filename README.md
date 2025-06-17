@@ -11,10 +11,14 @@ Registro de observaciones académicas por parte de profesores
 Generación de constancia del estudiante en formato PDF
 Control de acceso basado en roles (Profesor y Estudiante)
 
-##📝 Requisitos Odoo 17 Colocar el módulo en la carpeta addons o modules del proyecto Instalar como cualquier módulo estándar desde Apps
+## 📝 Requisitos 
 
-##🚀 Instalación
+Odoo 17 
+Python 3.8+
+PostgreSQL 13+
+pip (gestor de paquetes Python)
 
+## 🚀 Instalación
 Copiar o colonar la carpeta tcu_ampliacion dentro de modules/ o addons/ Reiniciar el servidor de Odoo "python odoo-bin -r user_db -w password_db --addons-path=addons -d name_db" ingresar a "localhost:8069" Activar el modo desarrollador Ir al menú Apps → Actualizar lista de aplicaciones Buscar TCU Ampliación e instalar
 
 👤 Autor Darvin Gutiérrez Altamirano
