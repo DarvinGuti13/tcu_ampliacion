@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_form_tcu_observacion" model="ir.ui.view">
+    <field name="name">tcu.observacion.form</field>
+    <field name="model">tcu.observacion</field>
+    <field name="arch" type="xml">
+      <form string="Observación Académica">
+        <sheet>
+          <group>
+            <field name="estudiante_id"/>
+            <field name="fecha"/>
+            <field name="comentario"/>
+            <field name="archivo_adjunto" filename="filename"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_tree_tcu_observacion" model="ir.ui.view">
+    <field name="name">tcu.observacion.tree</field>
+    <field name="model">tcu.observacion</field>
+    <field name="arch" type="xml">
+      <tree string="Observaciones">
+        <field name="estudiante_id"/>
+        <field name="fecha"/>
+        <field name="comentario"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_tcu_observacion" model="ir.actions.act_window">
+    <field name="name">Observaciones Académicas</field>
+    <field name="res_model">tcu.observacion</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_tcu_observacion" name="Observaciones" parent="menu_tcu_profesor_root" action="action_tcu_observacion"/>
+</odoo>

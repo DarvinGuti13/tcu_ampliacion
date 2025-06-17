@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tcu_estudiante_profesor,tcu.estudiante,model_tcu_estudiante,tcu_ampliacion.group_tcu_profesor,1,1,1,1
+access_tcu_estudiante_estudiante,tcu.estudiante,model_tcu_estudiante,tcu_ampliacion.group_tcu_estudiante,1,0,0,0
+access_tcu_profesor,tcu.profesor,model_tcu_profesor,tcu_ampliacion.group_tcu_profesor,1,1,1,1
+access_tcu_observacion_profesor,tcu.observacion.profesor,model_tcu_observacion,tcu_ampliacion.group_tcu_profesor,1,1,1,0
+access_tcu_observacion_estudiante,tcu.observacion,model_tcu_observacion,tcu_ampliacion.group_tcu_estudiante,1,0,0,0
+access_tcu_estado_historial,tcu.estado_historial,model_tcu_estado_historial,tcu_ampliacion.group_tcu_profesor,1,1,1,1
+access_tcu_estado_historial_estudiante,tcu.estado_historial,model_tcu_estado_historial,tcu_ampliacion.group_tcu_estudiante,1,0,0,0
+
+

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <record id="group_tcu_profesor" model="res.groups">
+      <field name="name">Profesor TCU</field>
+      <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <record id="group_tcu_estudiante" model="res.groups">
+      <field name="name">Estudiante TCU</field>
+      <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <record id="rule_tcu_estudiante_self_only" model="ir.rule">
+      <field name="name">Estudiante ve solo su expediente</field>
+      <field name="model_id" ref="model_tcu_estudiante"/>
+      <field name="groups" eval="[(4, ref('tcu_ampliacion.group_tcu_estudiante'))]"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_tcu_observacion_estudiante_self" model="ir.rule">
+      <field name="name">Observaciones visibles por el estudiante</field>
+      <field name="model_id" ref="model_tcu_observacion"/>
+      <field name="groups" eval="[(4, ref('tcu_ampliacion.group_tcu_estudiante'))]"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="domain_force">[('estudiante_id.user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_estado_historial_estudiante_self" model="ir.rule">
+      <field name="name">Historial de estados del estudiante</field>
+      <field name="model_id" ref="model_tcu_estado_historial"/>
+      <field name="groups" eval="[(4, ref('tcu_ampliacion.group_tcu_estudiante'))]"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="domain_force">[('estudiante_id.user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="rule_tcu_profesor_total" model="ir.rule">
+      <field name="name">Acceso total a estudiantes</field>
+      <field name="model_id" ref="model_tcu_estudiante"/>
+      <field name="groups" eval="[(4, ref('tcu_ampliacion.group_tcu_profesor'))]"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+      <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+
+    <record id="rule_tcu_observacion_profesor" model="ir.rule">
+      <field name="name">Observaciones de estudiantes asignados</field>
+      <field name="model_id" ref="model_tcu_observacion"/>
+      <field name="groups" eval="[(4, ref('tcu_ampliacion.group_tcu_profesor'))]"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="domain_force">[('estudiante_id.profesor_id.user_id', '=', user.id)]</field>
+    </record>
+
+  </data>
+</odoo>
+
+
+

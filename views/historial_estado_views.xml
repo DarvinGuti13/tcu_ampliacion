@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_form_tcu_estado_historial" model="ir.ui.view">
+    <field name="name">tcu.estado_historial.form</field>
+    <field name="model">tcu.estado_historial</field>
+    <field name="arch" type="xml">
+      <form string="Historial de Estado">
+        <sheet>
+          <group>
+            <field name="estudiante_id"/>
+            <field name="fecha"/>
+            <field name="estado_anterior"/>
+            <field name="nuevo_estado"/>
+            <field name="usuario_id"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_tree_tcu_estado_historial" model="ir.ui.view">
+    <field name="name">tcu.estado_historial.tree</field>
+    <field name="model">tcu.estado_historial</field>
+    <field name="arch" type="xml">
+      <tree string="Historial de Estado">
+        <field name="estudiante_id"/>
+        <field name="fecha"/>
+        <field name="estado_anterior"/>
+        <field name="nuevo_estado"/>
+        <field name="usuario_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_tcu_estado_historial" model="ir.actions.act_window">
+    <field name="name">Historial de Estados</field>
+    <field name="res_model">tcu.estado_historial</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_tcu_estado_historial" name="Historial de Estados" parent="menu_tcu_profesor_root" action="action_tcu_estado_historial"/>
+</odoo>

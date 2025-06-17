@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_form_tcu_profesor" model="ir.ui.view">
+    <field name="name">tcu.profesor.form</field>
+    <field name="model">tcu.profesor</field>
+    <field name="arch" type="xml">
+      <form string="Profesor TCU">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="departamento"/>
+            <field name="user_id"/>
+            <field name="estudiante_ids"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_tree_tcu_profesor" model="ir.ui.view">
+    <field name="name">tcu.profesor.tree</field>
+    <field name="model">tcu.profesor</field>
+    <field name="arch" type="xml">
+      <tree string="Profesores TCU">
+        <field name="name"/>
+        <field name="departamento"/>
+        <field name="user_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_tcu_profesor" model="ir.actions.act_window">
+    <field name="name">Profesores TCU</field>
+    <field name="res_model">tcu.profesor</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  
+  <menuitem id="menu_tcu_profesor_root" name="TCU Ampliación" sequence="1"/>
+  <menuitem id="menu_tcu_profesor" name="Profesores" parent="menu_tcu_profesor_root" action="action_tcu_profesor"/>
+</odoo>

@@ -1,0 +1,14 @@
+*.pyc
+*.pyo
+__pycache__/
+*.swp
+*.bak
+.idea/
+.vscode/
+*.log
+*.zip
+*.tar.gz
+*.egg-info
+dist/
+build/
+.env

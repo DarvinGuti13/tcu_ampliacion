@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  
+  <record id="view_form_tcu_estudiante" model="ir.ui.view">
+    <field name="name">tcu.estudiante.form</field>
+    <field name="model">tcu.estudiante</field>
+    <field name="arch" type="xml">
+      <form string="Estudiante TCU">
+        <header>
+          <button name="cambiar_estado_tcu" type="object" string="Marcar como En Revisión"
+                  context="{'nuevo_estado': 'revision'}"
+                  class="btn-primary"
+                  groups="tcu_ampliacion.group_tcu_profesor"/>
+          <button name="cambiar_estado_tcu" type="object" string="Aprobar"
+                  context="{'nuevo_estado': 'aprobado'}"
+                  class="btn-success"
+                  groups="tcu_ampliacion.group_tcu_profesor"/>
+          <button name="cambiar_estado_tcu" type="object" string="Rechazar"
+                  context="{'nuevo_estado': 'rechazado'}"
+                  class="btn-danger"
+                  groups="tcu_ampliacion.group_tcu_profesor"/>
+          <button name="cambiar_estado_tcu" type="object" string="Ejecutar"
+                  context="{'nuevo_estado': 'ejecucion'}"
+                  class="btn-info"
+                  groups="tcu_ampliacion.group_tcu_profesor"/>
+          <button name="cambiar_estado_tcu" type="object" string="Finalizar"
+                  context="{'nuevo_estado': 'finalizado'}"
+                  class="btn-secondary"
+                  groups="tcu_ampliacion.group_tcu_profesor"/>
+          <button name="print_reporte_estudiante"
+                  type="object"
+                  string="Imprimir Constancia"
+                  class="btn-secondary"/>
+        </header>
+
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="carnet"/>
+            <field name="correo"/>
+            <field name="telefono"/>
+            <field name="lugar_tcu"/>
+            <field name="periodo"/>
+            <field name="estado_solicitud" readonly="1"/>
+            <field name="profesor_id"/>
+            <field name="user_id" groups="base.group_system"/>
+          </group>
+
+          <!-- Observaciones Académicas -->
+          <group string="Observaciones Académicas" groups="tcu_ampliacion.group_tcu_profesor">
+            <field name="observacion_ids"
+                   invisible="1"
+                   modifiers="{'invisible': [('profesor_id.user_id', '!=', uid)], 'readonly': True}" />
+            <field name="observacion_ids"
+                   modifiers="{'invisible': [('profesor_id.user_id', '=', uid)]}">
+              <tree editable="bottom">
+                <field name="fecha"/>
+                <field name="comentario"/>
+                <field name="archivo_adjunto"/>
+              </tree>
+            </field>
+          </group>
+
+          
+          <group string="Observaciones Académicas" groups="tcu_ampliacion.group_tcu_estudiante">
+            <field name="observacion_ids" readonly="1">
+              <tree>
+                <field name="fecha"/>
+                <field name="comentario"/>
+              </tree>
+            </field>
+          </group>
+
+          
+          <group string="Historial de Estados">
+            <field name="historial_ids" readonly="1">
+              <tree>
+                <field name="fecha"/>
+                <field name="estado_anterior"/>
+                <field name="nuevo_estado"/>
+              </tree>
+            </field>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  
+  <record id="view_tree_tcu_estudiante" model="ir.ui.view">
+    <field name="name">tcu.estudiante.tree</field>
+    <field name="model">tcu.estudiante</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="carnet"/>
+        <field name="estado_solicitud"/>
+        <field name="profesor_id"/>
+      </tree>
+    </field>
+  </record>
+
+  
+  <record id="action_tcu_estudiante" model="ir.actions.act_window">
+    <field name="name">Estudiantes TCU</field>
+    <field name="res_model">tcu.estudiante</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_tcu_estudiante_activos" model="ir.actions.act_window">
+    <field name="name">Estudiantes en Ejecución</field>
+    <field name="res_model">tcu.estudiante</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('estado_solicitud', '=', 'ejecucion')]</field>
+  </record>
+
+ 
+  <menuitem id="menu_tcu_estudiante"
+            name="Estudiantes"
+            parent="menu_tcu_profesor_root"
+            action="action_tcu_estudiante"
+            groups="tcu_ampliacion.group_tcu_estudiante,tcu_ampliacion.group_tcu_profesor"/>
+
+  <menuitem id="menu_tcu_estudiante_activos"
+            name="Estudiantes Activos"
+            parent="menu_tcu_profesor_root"
+            action="action_tcu_estudiante_activos"
+            groups="tcu_ampliacion.group_tcu_estudiante,tcu_ampliacion.group_tcu_profesor"/>
+</odoo>
+
+
+
+
+
